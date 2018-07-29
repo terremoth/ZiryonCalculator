@@ -53,8 +53,17 @@
             </tr>
         </table>
         <br>
-        Resultado: <output id="rawResult">R$ 250,00</output> <br>
-        Saque limpo sem taxa de 20%: <output id="cleanResult">R$ 200,00</output> <br>
+        Resultado: <output id="rawResult">R$ 250,00</output>
+        <br>
+        <strong>Saque limpo sem taxa de <span id="showTax">20</span>%: <output id="cleanResult">R$ 200,00</output></strong>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr />
+        <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=1760c74eadbc5509d15afa12a793c8e994162da3'></script>
+        <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/392908/t/2"></script>
+        <script id="_waulte">var _wau = _wau || []; _wau.push(["dynamic", "kknel17e8f", "lte", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script>
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
         <script>
@@ -142,6 +151,13 @@
                 
                 $('input').change(calcInvestment);
                 $('#fourtyDaysInvesting,#lessTax').click(calcInvestment);
+                
+                $('#lessTax').change(function() {
+                    $('#showTax').html(this.value);
+                });
+                $('#lessTax').click(function() {
+                    $('#showTax').html(this.value);
+                });
             });
 
         </script>
