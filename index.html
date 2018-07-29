@@ -18,9 +18,12 @@
 <html>
     <head>
         <title>Simulador de Investimentos da Ziryon</title>
-        <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <meta charset="UTF-8" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta name="description" content="Simule o ganho dos seus investimentos na Ziryon. Dobre o valor deles em 40 dias!" />
+        <meta name="keywords" content="Ziryon, simulador, investimentos, exchange, lucro, ganhos, dobro" />
+        <meta name="robots" content="index, follow" />
         <style>
             * {
                 font-family: 'Open Sans', sans-serif;
@@ -35,22 +38,22 @@
         <table>
             <tr>
                 <td>Valor Inicial do investimento: </td>
-                <td>R$ <input type="text" title="Valor mínimo de investimento: R$ 100,00 e Máximo de R$ 20.000,00 aceito pela Ziryon" value="100,00" maxlength="9" id="initialValue" dir="rtl" autofocus="autofocus"></td>
+                <td>R$ <input type="text" title="Valor mínimo de investimento: R$ 100,00 e Máximo de R$ 20.000,00 aceito pela Ziryon" value="100,00" maxlength="9" id="initialValue" dir="rtl" autofocus="autofocus" /></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Calcular por:</td>
                 <td title="+- 2 meses de investimento"><label><input value="byFourty" type="radio" name="investType" checked="checked" > Quantidade de 40 <i>dias úteis</i> reinvestindo*</label></td>
-                <td><label><input type="radio" value="byDay" name="investType"> Por dia (6,25%)</label></td>
+                <td><label><input type="radio" value="byDay" name="investType" /> Por dia (6,25%)</label></td>
             </tr>
             <tr>
                 <td>Quantidade de vezes reinvestindo o valor até o teto: </td>
-                <td><input id="fourtyDaysInvesting" type="number" min="1" value="1" max="1000" step="1" dir="rtl"></td>
+                <td><input id="fourtyDaysInvesting" type="number" min="1" value="1" max="1000" step="1" dir="rtl" /></td>
                 <td></td>
             </tr>
             <tr>
                 <td>Taxa de desconto de manutenção, seguro e saque: </td>
-                <td><input id="lessTax" type="number" min="0" max="100" value="20" dir="rtl" size="5">%</td>
+                <td><input id="lessTax" type="number" min="0" max="100" value="20" dir="rtl" size="5" />%</td>
                 <td></td>
             </tr>
         </table>
@@ -71,7 +74,7 @@
         <br>
         <br>
         <a href="http://www.reliablecounter.com" target="_blank">
-            <img src="https://www.reliablecounter.com/count.php?page=terremoth.github.io/ziryon/&digit=style/plain/31/&reloads=0" alt="Contador de Visitas" title="Contador de Visitas" border="0">
+            <img src="https://www.reliablecounter.com/count.php?page=terremoth.github.io/ziryon/&digit=style/plain/31/&reloads=0" alt="Contador de Visitas" title="Contador de Visitas" border="0" />
         </a>
         <script id="_waulte">var _wau = _wau || []; _wau.push(["dynamic", "kknel17e8f", "lte", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script>
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -79,7 +82,7 @@
         <hr />
         Criado por Lucas M. Dutra - <a href="mailto:dutra.astro@gmail.com">Email</a> | <a href="https://github.com/terremoth">GitHub</a> | <a href="https://facebook.com/0day1337">Facebook</a> | <a href="https://ziryon.com/@lucasmd">Ziryon</a>
         <br>
-        <small><a href="http://bit.ly/ziryonsim">Shortlink para esta página</a>
+        <small><a href="http://bit.ly/ziryonsim">Shortlink para esta página</a></small>
         <script>
             String.prototype.replaceAt = function (index, str) {
                 return this.substr(0, index) + str + this.substr(index + str.length);
