@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- 
+    Author: Lucas Marques Dutra <dutra.astro@gmail.com> (c) 2018
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
+-->
+<html>
+    <head>
+        <title>Calculadora Ziryon de Investimentos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <style>
+            * {
+                font-family: 'Open Sans', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Calculadora Ziryon de Investimentos</h1>
+        <table>
+            <tr>
+                <td>Valor Inicial do investimento: </td>
+                <td>R$ <input type="text" value="100,00" maxlength="9" id="initialValue" dir="rtl" autofocus="autofocus"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Calcular por:</td>
+                <td title="+- 2 meses de investimento"><label><input value="byFourty" type="radio" name="investType" checked="checked" > Quantidade de 40 <i>dias úteis</i> reinvestindo*</label></td>
+                <td><label><input type="radio" value="byDay" name="investType"> Por dia (6,25%)</label></td>
+            </tr>
+            <tr>
+                <td>Quantidade de vezes reinvestindo o valor até o teto: </td>
+                <td><input id="fourtyDaysInvesting" type="number" min="1" value="1" max="1000" step="1" dir="rtl"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Taxa de desconto de manutenção, seguro e saque: </td>
+                <td><input id="lessTax" type="number" min="0" max="100" value="20" dir="rtl" size="5">%</td>
+                <td></td>
+            </tr>
+        </table>
+        <br>
+        Resultado: <output id="rawResult">R$ 250,00</output> <br>
+        Saque limpo sem taxa de 20%: <output id="cleanResult">R$ 200,00</output> <br>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+        <script>
+            String.prototype.replaceAt = function (index, str) {
+                return this.substr(0, index) + str + this.substr(index + str.length);
+            };
+
+            function toMoney(num, mil, dec) {
+
+                mil = mil || '.';
+                dec = dec || ',';
+
+                num = (typeof num === 'string') ? parseFloat(num) : num;
+
+                return num.toFixed(2).replace('.', dec).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1" + mil);
+            }
+
+            function moneyToFloat(str, toFixed) {
+                var lastCharPos = false, floatNumber = 0;
+
+                var searchDot = str.lastIndexOf('.');
+                var searchComma = str.lastIndexOf(',');
+
+                if (searchDot > searchComma) {
+                    lastCharPos = searchDot;
+                } else if (searchDot < searchComma) {
+                    lastCharPos = searchComma;
+                }
+
+                str = str.replaceAt(lastCharPos, 'F');
+                str = str.replace(/[\W]/g, '');
+                lastCharPos = str.indexOf('F');
+                str = str.replaceAt(lastCharPos, '.');
+                str = str.replace(/[a-zA-Z]/g, '');
+                floatNumber = parseFloat(str);
+                toFixed = toFixed || floatNumber.toString().length;
+                return parseFloat(floatNumber.toFixed(toFixed));
+            }
+
+            function calc(value, fourtyDaysInvesting) {
+                var tax = 1.5; //150%
+                var i = 0;
+                var initial = moneyToFloat($('#initialValue').val());
+
+                if ($("[type=radio]:checked").val() === 'byDay') {
+                    tax = (6.25 / 100) * initial;
+                    value = tax * fourtyDaysInvesting;
+
+                } else {
+                    while (i < fourtyDaysInvesting) {
+                        value = value + (value * tax);
+                        i++;
+                    }
+                }
+
+//                return 'R$ ' + toMoney(value, '.', ',');
+                return value;
+            }
+                
+            function calcInvestment() {
+                var value = moneyToFloat($('#initialValue').val(), 2);
+                var fourtyDaysInvesting = parseInt($('#fourtyDaysInvesting').val());
+                var lessTax = parseInt($('#lessTax').val())/100;
+                
+                var rawResult = calc(value, fourtyDaysInvesting);
+                var cleanResult = rawResult - (rawResult * (lessTax));
+                
+                var rawResultFormatted   = "R$ " + toMoney(rawResult,   '.', ',');
+                var cleanResultFormatted = "R$ " + toMoney(cleanResult, '.', ',');
+
+                    
+        
+                $('#rawResult').html(rawResultFormatted);
+                $('#cleanResult').html(cleanResultFormatted);
+            }
+
+            $(document).ready(function () {
+
+                $('#initialValue').mask("##.##0,00", {
+                    reverse: true,
+                    placeholder: '0,00'
+                });
+                
+                $('#lessTax').mask("###");
+                
+                $('input').change(calcInvestment);
+                $('#fourtyDaysInvesting,#lessTax').click(calcInvestment);
+            });
+
+        </script>
+    </body>
+</html>
