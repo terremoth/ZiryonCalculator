@@ -1,8 +1,11 @@
 {
     "short_name": "Simulador",
+    "author": "Lucas Marques Dutra",
     "name": "Simulador de Investimentos Ziryon",
     "start_url": "https://terremoth.github.io/ziryon/?utm_source=homescreen",
     "background_color": "darkgreen",
     "Theme_color": "darkgreen",
-    "display": "standalone"
+    "display": "standalone",
+    "version": "1.0",
+    "default_locale": "pt-br"
 }
