@@ -19,7 +19,7 @@
     <head>
         <title>Simulador de Investimentos da Ziryon</title>
         <meta charset="UTF-8" />
-        <link async href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+        <link media="all" href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
         <meta name="description" content="Simule o ganho dos seus investimentos na Ziryon. Dobre o valor deles em 40 dias!" />
         <meta name="keywords" content="Ziryon, simulador, investimentos, exchange, lucro, ganhos, dobro" />
@@ -74,11 +74,11 @@
         <br>
         <br>
         <br>
-        <a href="http://www.reliablecounter.com" target="_blank">
-            <img src="https://www.reliablecounter.com/count.php?page=terremoth.github.io/ziryon/&digit=style/plain/31/&reloads=0" alt="Contador de Visitas" title="Contador de Visitas" border="0" />
+        <a href="http://www.reliablecounter.com" rel="noopener" target="_blank">
+            <img src="https://www.reliablecounter.com/count.php?page=terremoth.github.io/ziryon/&digit=style/plain/31/&reloads=0" alt="Contador de Visitas" title="Contador de Visitas" />
         </a>
         <script id="_waulte">var _wau = _wau || []; _wau.push(["dynamic", "kknel17e8f", "lte", "c4302bffffff", "small"]);</script><script async src="//waust.at/d.js"></script>
-        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
         <hr />
         Criado por Lucas M. Dutra - <a href="mailto:dutra.astro@gmail.com">Email</a> | <a href="https://github.com/terremoth">GitHub</a> | <a href="https://facebook.com/0day1337">Facebook</a> | <a href="https://ziryon.com/@lucasmd">Ziryon</a>
@@ -140,20 +140,20 @@
 //                return 'R$ ' + toMoney(value, '.', ',');
                 return value;
             }
-                
+
             function calcInvestment() {
                 var value = moneyToFloat($('#initialValue').val(), 2);
                 var fourtyDaysInvesting = parseInt($('#fourtyDaysInvesting').val());
-                var lessTax = parseInt($('#lessTax').val())/100;
-                
+                var lessTax = parseInt($('#lessTax').val()) / 100;
+
                 var rawResult = calc(value, fourtyDaysInvesting);
                 var cleanResult = rawResult - (rawResult * (lessTax));
-                
-                var rawResultFormatted   = "R$ " + toMoney(rawResult,   '.', ',');
+
+                var rawResultFormatted = "R$ " + toMoney(rawResult, '.', ',');
                 var cleanResultFormatted = "R$ " + toMoney(cleanResult, '.', ',');
 
-                    
-        
+
+
                 $('#rawResult').html(rawResultFormatted);
                 $('#cleanResult').html(cleanResultFormatted);
             }
@@ -164,18 +164,20 @@
                     reverse: true,
                     placeholder: '0,00'
                 });
-                
+
                 $('#lessTax').mask("###");
-                
+
                 $('input').change(calcInvestment);
                 $('#fourtyDaysInvesting,#lessTax').click(calcInvestment);
-                
-                $('#lessTax').change(function() {
+
+                $('#lessTax').change(function () {
                     $('#showTax').html(this.value);
                 });
-                $('#lessTax').click(function() {
+                $('#lessTax').click(function () {
                     $('#showTax').html(this.value);
                 });
+
+                $('span>img').attr('alt', 'Online People');
             });
 
         </script>
