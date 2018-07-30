@@ -142,7 +142,8 @@
             }
 
             function calcInvestment() {
-                var value = moneyToFloat($('#initialValue').val(), 2);
+                var initial = $('#initialValue').val() || "0,00";
+                var value = moneyToFloat(initial, 2);
                 var fourtyDaysInvesting = parseInt($('#fourtyDaysInvesting').val());
                 var lessTax = parseInt($('#lessTax').val()) / 100;
 
