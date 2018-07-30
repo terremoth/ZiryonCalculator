@@ -59,7 +59,7 @@
             </tr>
         </table>
         <br>
-        Resultado: <output id="rawResult">R$ 250,00</output>
+        Resultado: <strong><output id="rawResult">R$ 250,00</output></strong>
         <br>
         <h3><strong>Saque limpo descontando taxa de <span id="showTax">20</span>%:</strong></h3> 
         <h1><strong><u><output id="cleanResult">R$ 200,00</output></u></strong></h1>
@@ -164,6 +164,11 @@
                     reverse: true,
                     placeholder: '0,00'
                 });
+                
+                var initial = $("#initialValue");
+                var len = initial.val().length;
+                initial[0].focus();
+                initial[0].setSelectionRange(len, len);
 
                 $('#lessTax').mask("###");
 
@@ -176,7 +181,8 @@
                 $('#lessTax').click(function () {
                     $('#showTax').html(this.value);
                 });
-
+                
+                
                 setTimeout(function() {
                     $('span>img').attr('alt', 'Online People');
                 }, 333);
